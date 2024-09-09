@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Genrator</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+    <h1>Genrate a <br><span>Random Password</span></h1>
+    <div class="display">
+        <input type="text" id="password" placeholder="Password">
+        <img src="https://cdn-icons-png.freepik.com/256/2921/2921709.png?semt=ais_hybrid" alt="" onclick="copyPassword()">
+    </div>
+    <button onclick="createPassword()"><img src="https://cdn-icons-png.freepik.com/256/6218/6218593.png?semt=ais_hybrid" alt="">Genrate Password</button>
+    </div>
+
+    <script>
+        const passwordBox=document.getElementById('password');
+        const length=12;
+        
+        // const upperCase="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        // const lowerCase="abcdefghijklmnopqrstuvwxyz";
+        // const numbers="0123456789";
+        // const symbol="!@#$%^&*()_+-=";
+        // const allChar=upperCase+lowerCase+numbers+symbol;
+         const allChar="ABCDEFGHIJKLMNOPQRSTUVWXYZlmnopqrstuvwxyz0123456789!@#$%^&*()_+-="
+        function createPassword(){
+            let password="";
+
+            while(length>password.length){
+             password+=allChar[Math.floor(Math.random()*allChar.length)];
+            }
+            passwordBox.value=password;
+        }
+
+        function copyPassword(){
+            passwordBox.select(); 
+            document.execCommand("copy");
+        }
+    </script>
+</body>
+</html>
+
+
+<!-- 
+in this we make a password genrator using js
+
+
+-->
