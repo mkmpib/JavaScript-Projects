@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container">
+    <h1><img src="images/images/notes.png" alt="">Notes</h1>
+    <button class="btn"><img src="images/images/edit.png" alt="">Create Notes</button>
+    <div class="notes-container">
+       <!--   <p contenteditable="true" class="input-box"><img src="images/images/delete.png" alt=""></p> -->
+   </div>
+
+
+    </div>
+    <script>
+  const notesContainer =document.querySelector(".notes-container");
+  const createBtn =document.querySelector(".btn");
+  let notes =document.querySelector(".input-box");
+
+  // Function to load notes from local storage
+function showNotes(){
+    notesContainer.innerHTML=localStorage.getItem("notes");
+}
+
+ // Function to update local storage
+function updateStorage(){
+    localStorage.setItem("notes",notesContainer.innerHTML);
+}
+showNotes();
+
+  //we crete a function to display the notes in p tag that we commented in html part
+  createBtn.addEventListener("click",()=>{
+    let inputBox=document.createElement('p');
+    let img=document.createElement('img');
+    inputBox.className='input-box';
+    inputBox.setAttribute("contenteditable","true");
+    img.src="images/images/delete.png";
+    notesContainer.appendChild(inputBox).appendChild(img);//we use append child to display the inputBox and img in notescontainer that is part of html
+     updateStorage();
+  })
+
+  //adding delete functionality
+  notesContainer.addEventListener("click",function(e){
+    if(e.target.tagName === "IMG"){
+        e.target.parentElement.remove();
+        updateStorage();
+    }
+  });
+   // Event listener for editing notes and ager isko htayege to last vale notes ka content remove h jayega
+        notesContainer.addEventListener("input", function(e) {
+            if (e.target.classList.contains('input-box')) {
+                updateStorage(); // Update local storage on content change
+            }
+        });
+  
+    </script>
+</body>
+</html>
